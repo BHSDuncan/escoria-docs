@@ -5,5 +5,6 @@ Escoria API reference
    :maxdepth: 1
    :name: sec-api
    :glob:
-  
+
    *
+

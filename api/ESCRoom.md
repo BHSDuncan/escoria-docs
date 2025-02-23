@@ -82,7 +82,48 @@ var game
 
 The game scene instance
 
+### compiled\_script
+
+```gdscript
+var compiled_script: ESCScript
+```
+
+Compiled ESCScript
+
+### enabled\_automatic\_transitions
+
+```gdscript
+var enabled_automatic_transitions
+```
+
+ Whether automatic transition are enabled or not
+
+### is\_run\_directly
+
+```gdscript
+var is_run_directly
+```
+
+Whether this room was run directly with Play Scene (F6)
+
+### exited\_previous\_room
+
+```gdscript
+var exited_previous_room
+```
+
+Whether this room was accessed from an exit in a previous room
+
 ## Method Descriptions
+
+### perform\_script\_events
+
+```gdscript
+func perform_script_events()
+```
+
+Performs the ESC script events "setup" and "ready", in this order, if they are
+present. Also manages automatic transitions.
 
 ### set\_camera\_limits
 

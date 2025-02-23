@@ -1,6 +1,7 @@
 import re
 
 from pathlib import Path
+from m2r2 import convert
 
 esc_commands = ""
 
@@ -31,9 +32,9 @@ for filename in sorted(Path("api").glob("*.md")):
         if is_stub:
             esc_commands += "**This command is currently not fully implemented.**\n\n"
 
-        esc_commands += "%s\n\n" % matches.group("description")
+        esc_commands += "%s\n\n" % convert(matches.group("description"))
 
-esc_doc = Path("scripting/z_esc_reference.rst").read_text()
+esc_doc = Path("esc_reference.template.rst").read_text()
 
 esc_doc = re.sub(r"(?s)\.\. ESCCOMMANDS.*\.\. /ESCCOMMANDS", ".. ESCCOMMANDS\n\n%s\n\n.. /ESCCOMMANDS" % esc_commands, esc_doc)
 Path("scripting/z_esc_reference.rst").write_text(esc_doc)

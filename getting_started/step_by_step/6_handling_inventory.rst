@@ -2,7 +2,7 @@ Handling an inventory
 =====================
 
 Most adventure games feature inventory puzzles: Things you pick up and combine
-with other things which are then used in the game. Classic adventure games 
+with other things which are then used in the game. Classic adventure games
 made use of the inventory extensively!
 
 Escoria has features for handling inventory items as well, of course. Let's
@@ -17,7 +17,7 @@ the previous room is removed from Godot's scene tree, together with the items
 in there.
 
 To workaround this, inventory items must be placed in a special path where
-Escoria can find them whenever needed. This path is called the "autoregister 
+Escoria can find them whenever needed. This path is called the "autoregister
 path", and in the game template it defaults to "items".
 
 .. hint::
@@ -28,7 +28,7 @@ path", and in the game template it defaults to "items".
 Creating an inventory item
 --------------------------
 
-Inventory items are also simple ``ESCItem`` instances that you know from the 
+Inventory items are also simple ``ESCItem`` instances that you know from the
 previous chapter.
 
 Start by copying over the ``mug.png`` file to the "items" directory.
@@ -36,8 +36,8 @@ Start by copying over the ``mug.png`` file to the "items" directory.
 Then, create a new scene and select ``ESCItem`` as its root node. Rename it
 to "Beer" and set "beer" as its ``global id``.
 
-Add a ``TextureRect`` node with the mug picture. Also, add a ``CollisionShape2D`` 
-node to define the area of interactivity like before.
+Add a ``TextureRect`` node with the mug picture. Also, add a
+``CollisionShape2D`` node to define the area of interactivity like before.
 
 Finally, create a new ESC script called "beer.esc" and place it in the "items"
 folder as well. Leave the script empty for now.
@@ -102,7 +102,7 @@ Try it out. Graham should now be able to pick up the mug!
 Using the mug
 -------------
 
-Usually, items are not only picked up but also used with different items 
+Usually, items are not only picked up but also used with different items
 either in the inventory or in a particular room.
 
 This is also done using events in the ESC script. Apart from the event name
@@ -113,12 +113,12 @@ need to make the beer combinable with other items when it is used from the
 inventory and then react to it in the ESC script of the blackboard.
 
 So go into the beer item scene again and select the property, ``Use from
-inventory only``. This will restrict usage of the beer to inside the 
-inventory only, so the beer mug will not listen to the ``use`` action anymore.
+inventory only``. Now, if you wish to use the verb 'use' with the beer, this
+interaction will only be permitted if the beer is in the inventory.
 
-Add an item to "Combine If Action Used Among" and set it to
-"use". This is required to tell Escoria that if the verb "use" is used on
-the beer mug, another object will be required to complete the action:
+Add an item to the list in the setting ``Combine When Selected Action Is In``
+and set it to "use". This enables the player to use another object together
+with the mug when using the verb "use".
 
 .. image:: img/inventory_use.png
    :alt: The display of the previously described options.

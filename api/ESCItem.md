@@ -117,10 +117,10 @@ export var default_action_inventory = ""
 
 Default action to use if object is in the inventory
 
-### combine\_if\_action\_used\_among
+### combine\_when\_selected\_action\_is\_in
 
 ```gdscript
-export var combine_if_action_used_among = []
+export var combine_when_selected_action_is_in = []
 ```
 
 If action used by player is in this list, the game will wait for a second
@@ -146,14 +146,13 @@ export var use_from_inventory_only = false
 If true, then the object must have been picked up before using it.
 A false value is useful for items in the background, such as buttons.
 
-### inventory\_item\_scene\_file
+### inventory\_texture
 
 ```gdscript
-export var inventory_item_scene_file: PackedScene = "[Object:null]"
+export var inventory_texture: Texture = "[Object:null]"
 ```
 
-Scene based on ESCInventoryItem used in inventory for the object if it is
-picked up, that displays and handles the item
+The visual representation for this item when its in the inventory
 
 ### dialog\_color
 
@@ -196,6 +195,15 @@ export var animation_player_node: NodePath = ""
 
 The node used to play animations
 
+### camera\_node
+
+```gdscript
+export var camera_node = ""
+```
+
+The node that references the camera position and zoom if this item is used
+as a camera target
+
 ### animations
 
 ```gdscript
@@ -227,15 +235,6 @@ var collision: Node
 ```
 
 Reference to this items collision shape node
-
-### inventory\_item
-
-```gdscript
-var inventory_item: ESCInventoryItem
-```
-
-The representation of this item in the scene. Will
-be loaded, if inventory_item_scene_file is set.
 
 ## Method Descriptions
 
@@ -387,6 +386,23 @@ func stop_talking()
 ```
 
 Stop playing the talking animation
+
+### update\_idle
+
+```gdscript
+func update_idle()
+```
+
+Replay the last idle animation
+
+### get\_camera\_node
+
+```gdscript
+func get_camera_node()
+```
+
+Return the camera position if a camera_position_node exists or the
+global position of the player
 
 ## Signals
 

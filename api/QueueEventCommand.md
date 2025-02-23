@@ -1,18 +1,23 @@
 <!-- Auto-generated from JSON by GDScript docs maker. Do not edit this document directly. -->
 
-# CutSceneCommand
+# QueueEventCommand
 
 **Extends:** [ESCBaseCommand](../ESCBaseCommand) < [Node](../Node)
 
 ## Description
 
-`cut_scene object name [reverse]`
+`queue_event object event [channel] [block]`
 
-Executes the animation specificed with the "name" parameter on the object,
-blocking. The next command in the event will be executed when the animation
-is finished playing. Optional parameters:
+Queue another event to run
 
-* reverse plays the animation in reverse when true
+**Parameters**
+
+- object: Object that holds the ESC script with the event
+- event: Name of the event to queue
+- channel: Channel to run the event on (default: `_front`)
+- block: Whether to wait for the queue to finish. This is only possible, if
+  the queued event is not to be run on the same event as this command
+  (default: `false`)
 
 @ESC
 
@@ -37,7 +42,7 @@ Validate wether the given arguments match the command descriptor
 ### run
 
 ```gdscript
-func run(command_params: Array) -> var
+func run(arguments: Array) -> var
 ```
 
 Run the command

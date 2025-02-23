@@ -6,21 +6,22 @@
 
 ## Description
 
-`say object text [type] [avatar]`
+`say player text [type]`
 
-Runs the specified string as a dialog said by the object. Blocks execution
-until the dialog finishes playing.
+Displays the specified string as dialog spoken by the player. Blocks execution
+until the dialog has finished playing.
 
-The text supports translation keys by prepending the key and separating
-it with a `:` from the text.
+**Parameters**
+
+- *player*: Global ID of the `ESCPlayer` or `ESCItem` object that is active
+- *text*: Text to display
+- *type*: Dialog type to use. One of `floating` or `avatar`
+  (default: the value set in the setting "Escoria/UI/Default Dialog Type")
+
+The text supports translation keys by prepending the key followed by
+a colon (`:`) to the text.
 
 Example: `say player ROOM1_PICTURE:"Picture's looking good."`
-
-Optional parameters:
-
-* "type" determines the type of dialog UI to use. Default value is "default"
-* "avatar" determines the avatar to use for the dialog. Default value is
-  "default"
 
 @ESC
 
@@ -33,6 +34,14 @@ func configure() -> ESCCommandArgumentDescriptor
 ```
 
 Return the descriptor of the arguments of this command
+
+### validate
+
+```gdscript
+func validate(arguments: Array)
+```
+
+Validate wether the given arguments match the command descriptor
 
 ### run
 

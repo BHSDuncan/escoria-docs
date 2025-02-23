@@ -18,6 +18,14 @@ var statements: Array
 
 The list of ESC commands
 
+### is\_finished
+
+```gdscript
+var is_finished: bool = false
+```
+
+Indicates whether this event was finished.
+
 ## Method Descriptions
 
 ### is\_valid
@@ -43,6 +51,14 @@ func interrupt()
 ```
 
 Interrupt the statement in the middle of its execution.
+
+### reset\_interrupt
+
+```gdscript
+func reset_interrupt()
+```
+
+Resets an interrupted event
 
 ## Signals
 

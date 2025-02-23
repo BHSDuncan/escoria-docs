@@ -1,19 +1,19 @@
 <!-- Auto-generated from JSON by GDScript docs maker. Do not edit this document directly. -->
 
-# SetSoundStateCommand
+# HideMenuCommand
 
 **Extends:** [ESCBaseCommand](../ESCBaseCommand) < [Node](../Node)
 
 ## Description
 
-`set_sound_state player sound loop`
+`hide_menu menu_type [enable_automatic_transition]`
 
-Change the sound playing on `player` to `sound` with optional looping if
-`loop` is true.
-Valid players are "_music" and "_sound".
-Aside from paths to sound or music files, the values *off* and *default*.
-*default* is the default value.
-are also valid for `sound`
+Hides either the main menu or the pause menu.
+
+**Parameters**
+
+- *menu_type*: Type of menu to hide. Can be either `main` or `pause` (default: `main`)
+- *enable_automatic_transition*: Whether to automatically transition from the menu (default: `false`)
 
 @ESC
 
@@ -38,7 +38,7 @@ Validate wether the given arguments match the command descriptor
 ### run
 
 ```gdscript
-func run(command_params: Array) -> int
+func run(command_params: Array) -> var
 ```
 
 Run the command

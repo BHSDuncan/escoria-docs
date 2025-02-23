@@ -113,14 +113,6 @@ var resource_cache: ESCResourceCache
 
 Resource cache handler
 
-### main\_menu\_instance
-
-```gdscript
-var main_menu_instance
-```
-
-Instance of the main menu
-
 ### room\_terrain
 
 ```gdscript
@@ -132,7 +124,7 @@ Terrain of the current room
 ### dialog\_player
 
 ```gdscript
-var dialog_player: ESCDialogsPlayer
+var dialog_player: ESCDialogPlayer
 ```
 
 Dialog player instantiator. This instance is called directly for dialogs.
@@ -202,7 +194,34 @@ var controller: ESCController
 The controller in charge of converting an action verb on a game object
 into an actual action
 
+### game\_scene
+
+```gdscript
+var game_scene: ESCGame
+```
+
+ The game scene loaded
+
+### start\_script
+
+```gdscript
+var start_script: ESCScript
+```
+
+The compiled start script loaded from ProjectSettings
+escoria/main/game_start_script
+
 ## Method Descriptions
+
+### init
+
+```gdscript
+func init()
+```
+
+Called by Escoria's main_scene as very very first event EVER.
+Usually you'll want to show some logos animations before spawning the main
+menu in the escoria/main/game_start_script 's :init event
 
 ### new\_game
 
@@ -227,6 +246,18 @@ Run a generic action
 - can_interrupt: if true, this command will interrupt any ongoing event
 before it is finished
 
+### apply\_settings
+
+```gdscript
+func apply_settings(p_settings: ESCSaveSettings) -> void
+```
+
+Apply the loaded settings
+
+#### Parameters
+
+* p_settings: Loaded settings
+
 ### set\_game\_paused
 
 ```gdscript
@@ -237,6 +268,87 @@ Pauses or unpause the game
 
 #### Parameters
 - p_paused: if true, pauses the game. If false, unpauses the game.
+
+### run\_event\_from\_script
+
+```gdscript
+func run_event_from_script(script: ESCScript, event_name: String)
+```
+
+Runs the event "event_name" from the "script" ESC script.
+
+#### Parameters
+- script: ESC script containing the event to run. The script must have been
+loaded.
+- event_name: Name of the event to run
+
+### register\_setting
+
+```gdscript
+func register_setting(name: String, default, info: Dictionary)
+```
+
+Register a new project setting if it hasn't been defined already
+
+#### Parameters
+
+- name: Name of the project setting
+- default: Default value
+- info: Property info for the setting
+
+### register\_ui
+
+```gdscript
+func register_ui(game_scene: String)
+```
+
+Register a user interface. This should be called in a deferred way
+from the addon's _enter_tree.
+
+#### Parameters
+- game_scene: Path to the game scene extending ESCGame
+
+### deregister\_ui
+
+```gdscript
+func deregister_ui(game_scene: String)
+```
+
+Deregister a user interface
+
+#### Parameters
+- game_scene: Path to the game scene extending ESCGame
+
+### register\_dialog\_manager
+
+```gdscript
+func register_dialog_manager(manager_class: String)
+```
+
+Register a dialog manager addon. This should be called in a deferred way
+from the addon's _enter_tree.
+
+#### Parameters
+- manager_class: Path to the manager class script
+
+### deregister\_dialog\_manager
+
+```gdscript
+func deregister_dialog_manager(manager_class: String)
+```
+
+Deregister a dialog manager addon
+
+#### Parameters
+- manager_class: Path to the manager class script
+
+### quit
+
+```gdscript
+func quit()
+```
+
+Function called to quit the game.
 
 ## Signals
 

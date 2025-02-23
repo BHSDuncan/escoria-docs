@@ -24,6 +24,22 @@ MOUSE_TOOLTIP_LIMITS - Visualize the tooltip limits
 
 ## Property Descriptions
 
+### main\_menu
+
+```gdscript
+export var main_menu = ""
+```
+
+The main menu node
+
+### pause\_menu
+
+```gdscript
+export var pause_menu = ""
+```
+
+The main menu node
+
 ### mouse\_tooltip\_margin
 
 ```gdscript
@@ -32,14 +48,6 @@ export var mouse_tooltip_margin = 50
 
 The safe margin around tooltips
 
-### tooltip\_node
-
-```gdscript
-var tooltip_node: Object
-```
-
-A reference to the node handling tooltips
-
 ### editor\_debug\_mode
 
 ```gdscript
@@ -47,6 +55,14 @@ export var editor_debug_mode = 0
 ```
 
 Which (if any) debug mode for the editor is used
+
+### tooltip\_node
+
+```gdscript
+var tooltip_node: Object
+```
+
+A reference to the node handling tooltips
 
 ## Method Descriptions
 
@@ -234,14 +250,50 @@ func show_ui()
 Called when the UI should be shown
 (Needs to be overridden, if supported)
 
-### update\_tooltip\_following\_mouse\_position
+### pause\_game
 
 ```gdscript
-func update_tooltip_following_mouse_position(p_position: Vector2)
+func pause_game()
 ```
 
-Function is called if Project setting escoria/ui/tooltip_follows_mouse = true
+Pauses the game. Reimplement to eventually show a specific UI.
+
+### unpause\_game
+
+```gdscript
+func unpause_game()
+```
+
+Unpause the game. Reimplement to eventually hide a specific UI.
+
+### show\_main\_menu
+
+```gdscript
+func show_main_menu()
+```
+
+ Shows the main menu. Reimplement to show a specific UI.
+
+### hide\_main\_menu
+
+```gdscript
+func hide_main_menu()
+```
+
+Hides the main menu. Reimplement to hide a specific UI.
+
+### show\_crash\_popup
+
+```gdscript
+func show_crash_popup(files: Array) -> var
+```
+
+Shows the crash popup when a crash occurs
 
 #### Parameters
 
-- p_position: Position of the mouse
+- files: Array of strings containing the paths to the files generated on crash
+
+## Signals
+
+- signal crash_popup_confirmed(): Emitted when the user has confirmed the crash popup
